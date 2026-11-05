@@ -12,6 +12,7 @@ dependencies = [
     "pydantic-ai-slim[anthropic]>=2.65.0",
     "pydantic-settings>=2.16.2",
     "python-dotenv>=1.2.4",
+    "supabase",
 ]
 
 [dependency-groups]
