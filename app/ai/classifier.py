@@ -1,5 +1,6 @@
 from pydantic_ai import Agent
 
+from app.ai.models import chat_model
 from app.ai.schemas import Classification
 from app.config import settings
 
@@ -29,7 +30,7 @@ Never mention AI.
 """
 
 classifier = Agent(
-    model= settings.classifier_model,
+    model=chat_model(settings.classifier_model),
     output_type=Classification,
     instructions=INSTRUCTIONS)
 
