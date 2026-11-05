@@ -10,9 +10,13 @@ class Settings(BaseSettings):
     google_client_secret: str
     google_refresh_token: str
     database_url: str
-    classifier_model: str = "jev-1.13-free"
+    classifier_model: str = "cerebras:qwen-3.8-27b"
+    agent_model: str = "nvidia:nvidia/nemotron-3-ultra-550b-a55b"
     opencode_api_key: str = ""
-    agent_model: str = "anthropic:claude-sonnet-5-5"
+    nvidia_api_key: str = ""
+    cerebras_api_key: str = ""
+    nvidia_base_url: str = "https://integrate.api.nvidia.com/v1"
+    cerebras_base_url: str = "https://api.cerebras.ai/v1"
     poll_interval_seconds: int = 60
     dashboard_username: str = "admin"
     dashboard_password: str = ""
