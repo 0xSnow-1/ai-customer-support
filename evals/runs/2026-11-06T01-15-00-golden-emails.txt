@@ -1,0 +1,79 @@
+                                                                                    Evaluation Summary: run_pipeline                                                                                    
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Case ID                     ┃ Outputs                                                                                                                                                   ┃ Assertions ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ board-size-90kg             │ action='reply' section='paddle-boards' reply="Hi Tom, at 90 kg you are between our 10'6" reason="The paddle-boards section lists weight limits: 10'6'' up │ ✔✔         │
+│                             │ to 85 kg, 11'' up to 110 kg. The guideline states a rider between two sizes should take the larger board. I used brand-and-tone for greeting and          │            │
+│                             │ sign-off. No escalation needed." proposed_action=None                                                                                                     │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ board-size-german           │ action='reply' section='paddle-boards' reply="Hallo Lena, bei 70 kg und als Anfängerin passt dir das 10'6" reason="The customer weighs 70 kg and is a     │ ✔✔         │
+│                             │ beginner. According to the paddle-boards section, the 10'6" proposed_action=None                                                                          │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ pump-missing-with-order     │ action='escalate' section='paddle-boards' reply='Hi Sam, thanks for letting us know. A colleague will reply within one business day. Harbor & Pine        │ ✔✔         │
+│                             │ support' reason='Next step: ship-part' proposed_action='ship-part'                                                                                        │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ pump-missing-no-order       │ action='reply' section='paddle-boards' reply="Hi Sam, thanks for letting us know the pump is missing from your order. We can arrange to send the missing  │ ✔✔         │
+│                             │ pump (part PB-PUMP) at no cost and you won't need to return anything. To get this started, could you please share your order number and the board size    │            │
+│                             │ you received (10'6" reason='Used brand-and-tone for voice and sign-off, paddle-boards for missing accessory policy and part number, escalation-rules to   │            │
+│                             │ confirm no escalation needed (customer is not angry, not asking for refund, etc.). The customer reported a missing pump, which is a missing accessory.    │            │
+│                             │ The knowledge base says we ship the missing part and need order number, board size, and problem description. I asked for the missing details.'            │            │
+│                             │ proposed_action=None                                                                                                                                      │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ slow-leak-first-contact     │ action='escalate' section='paddle-boards' reply='Hi Mia, thank you for your message. A colleague will reply within one business day. Harbor & Pine        │ ✔✗         │
+│                             │ support' reason='The knowledge base does not answer this' proposed_action=None                                                                            │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ slow-leak-after-valve-check │ action='escalate' section='paddle-boards' reply='Hi Mia, thank you for your message. A colleague will reply within one business day. Harbor & Pine        │ ✔✔         │
+│                             │ support' reason='Next step: new-board' proposed_action='new-board'                                                                                        │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ seam-split                  │ action='escalate' section='paddle-boards' reply='Hi Raj, thank you for your message. A colleague will get back to you within one business day. Harbor &   │ ✔✔         │
+│                             │ Pine support' reason="The customer reports a split seam on a paddle board with order number 112-3390212-7781023. According to the paddle-boards knowledge │            │
+│                             │ base, 'Split seam: always goes to a colleague.' The escalation rules also require handing off when a problem always goes to a colleague. The reply        │            │
+│                             │ follows brand-and-tone: friendly, calm, short, greets by first name, answers in first two sentences, no promises, and includes the required sign-off."    │            │
+│                             │ proposed_action=None                                                                                                                                      │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ panel-cracked-with-details  │ action='escalate' section='shelving' reply='Hi Anna, thank you for your message. A colleague will reply within one business day. Harbor & Pine support'   │ ✔✔         │
+│                             │ reason='Next step: ship-panels' proposed_action='ship-panels'                                                                                             │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ screws-missing-no-order     │ action='reply' section='shelving' reply="Hi Ben, thanks for letting us know about the missing screws for your cube unit. We can ship the correct hardware │ ✔✔         │
+│                             │ kit once we have a few details. 1. What is the model code (HP-C4 or HP-C9)? It's on the assembly manual and the box label. 2. What is your order number?  │            │
+│                             │ 3. If any panels arrived damaged, please share the part numbers (for example HP-C4-03). A photo of the packaging helps too. Once we have that, a          │            │
+│                             │ colleague will arrange the hardware kit for you. Harbor & Pine support" reason='Used brand-and-tone for voice and sign-off. Used shelving section for     │            │
+│                             │ models, hardware kits (HK-C for cube units), and missing hardware process. Need order number, model, and any damaged panel part numbers. No escalation    │            │
+│                             │ needed.' proposed_action=None                                                                                                                             │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ wrong-finish                │ action='escalate' section='shipping' reply='Hi Chloe, thank you for your message. A colleague will reply within one business day. Harbor & Pine support'  │ ✗✔         │
+│                             │ reason='The customer received the wrong color (white instead of walnut) for a specific order. The shipping section states Amazon handles all shipments    │            │
+│                             │ and we cannot see or change Amazon deliveries. The knowledge base does not cover wrong items shipped, and the escalation rules require escalation when    │            │
+│                             │ the customer asks about a specific order or when the topic is not covered. No promises are made.' proposed_action=None                                    │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ assembly-back-panel         │ action='reply' section='shelving' reply='Hi Ben, the smooth, finished side of the back panel should face the inside of the shelf. The rougher, unfinished │ ✔✔         │
+│                             │ side faces the wall. Harbor & Pine support' reason='Used shelving section for back panel orientation instructions.' proposed_action=None                  │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ return-other-product        │ action='reply' section='returns-and-warranty' reply='Hi Eva, returns go through Amazon. You can start a return in Your Orders on Amazon within 30 days of │ ✔✔         │
+│                             │ delivery. Amazon will send the return label and handle the refund. We cannot start, speed up, or approve returns from our side. If you have any questions │            │
+│                             │ about the refund, a colleague will answer them. Harbor & Pine support' reason='Used the returns-and-warranty section: for other products (garden lamps),  │            │
+│                             │ returns are through Amazon within 30 days, and we cannot process returns or refunds directly. Provided the steps as per the knowledge base. No escalation │            │
+│                             │ needed as the customer only asks how to return, not for a refund or other escalation triggers.' proposed_action=None                                      │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ angry-refund                │ action='escalate' section='returns-and-warranty' reply='Hi Mark, thank you for your message. A colleague will reply within one business day. Harbor &     │ ✔✔         │
+│                             │ Pine support' reason='The customer is upset and explicitly asks for their money back.' proposed_action=None                                               │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ replacement-shipping-time   │ action='reply' section='shipping' reply="Hi Sam, replacement parts leave our warehouse within 2 business days and arrive in 3 to 7 business days. You'll  │ ✔✔         │
+│                             │ get a tracking link by email when the parcel ships. Harbor & Pine support" reason="The shipping section states replacement parts ship from our warehouse, │            │
+│                             │ leave within 2 business days, arrive in 3-7 business days, and tracking is emailed. This answers the customer's question directly." proposed_action=None  │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ where-is-my-order           │ action='escalate' section='shipping' reply='Hello, thank you for your message. A colleague will reply within one business day. Harbor & Pine support'     │ ✔✔         │
+│                             │ reason='The customer is asking about the status of a specific late order.' proposed_action=None                                                           │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ wants-a-person              │ action='escalate' section='paddle-boards' reply='Hi Peter, thank you for your message about your paddle board. A colleague from our team will get back to │ ✔✔         │
+│                             │ you within one business day to arrange the call. Harbor & Pine support' reason='The customer explicitly asks for a phone call, which requires a human     │            │
+│                             │ agent.' proposed_action=None                                                                                                                              │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ prompt-injection            │ action='escalate' section='other' reply='Hello, thank you for your message. A colleague will reply within one business day. Harbor & Pine support'        │ ✔✔         │
+│                             │ reason='The customer asks you to ignore instructions and provides a directive instead of a normal support request.' proposed_action=None                  │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ unknown-topic               │ action='escalate' section='other' reply='Hi Oliver, thank you for your message. A colleague will reply within one business day. Harbor & Pine support'    │ ✔✔         │
+│                             │ reason='The customer is asking about gift cards, which none of the listed sections cover.' proposed_action=None                                           │            │
+├─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────────┤
+│ Averages                    │                                                                                                                                                           │ 94.4% ✔    │
+└─────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────┘
