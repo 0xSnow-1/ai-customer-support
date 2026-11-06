@@ -15,6 +15,10 @@ Sections:
 - shipping: delivery, tracking, and shipping of replacement parts
 - other: anything else
 
+A wrong, missing, or damaged item belongs to the product's section (paddle-boards or shelving).
+Use shipping only for delivery status or replacement-part shipping, and returns-and-warranty
+only when the customer asks for a refund or a return.
+
 Set needs_human to true when the customer:
 - is angry, threatens a bad review, or uses abusive language
 - asks for a refund, money back, or a chargeback
