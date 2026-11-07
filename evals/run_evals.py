@@ -1,5 +1,6 @@
 
 import json
+import re
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -34,6 +35,13 @@ class ReplyEndsWithSignOff(Evaluator):
         return ctx.output.reply.rstrip().endswith("Harbor & Pine support")
 
 
+@dataclass
+class ReplyIsPlainText(Evaluator):
+    def evaluate(self, ctx: EvaluatorContext) -> bool:
+        text = ctx.output.reply
+        return "\n" in text and not re.search(r"<[a-zA-Z/][^>]*>", text)
+
+
 def run_pipeline(email: str) -> Decision:
     return decide(email)
 
@@ -48,7 +56,7 @@ dataset = Dataset(
         )
         for case in GOLDEN_EMAILS
     ],
-    evaluators=[SectionMatches(), ActionMatches(), ReplyEndsWithSignOff()],
+    evaluators=[SectionMatches(), ActionMatches(), ReplyEndsWithSignOff(), ReplyIsPlainText()],
 )
 
 

@@ -2,6 +2,7 @@ from app.ai.agent import write_reply
 from app.ai.classifier import classify
 from app.ai.rules import CUSTOMER_STEPS, resolve_issue
 from app.ai.schemas import Decision
+from app.email_format import format_email
 
 
 def decide(thread: str, has_attachments: bool = False) -> Decision:
@@ -12,7 +13,7 @@ def decide(thread: str, has_attachments: bool = False) -> Decision:
         return Decision(
             action="escalate",
             section=classification.section,
-            reply=classification.acknowledgement,
+            reply=format_email(classification.acknowledgement),
             reason=reason,
             proposed_action=proposed_action,
         )
@@ -37,6 +38,6 @@ def decide(thread: str, has_attachments: bool = False) -> Decision:
     return Decision(
         action="reply",
         section=classification.section,
-        reply=answer.reply,
+        reply=format_email(answer.reply),
         reason=answer.reasoning,
     )

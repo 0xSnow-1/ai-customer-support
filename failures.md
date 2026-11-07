@@ -4,7 +4,7 @@ A running log of customer-facing failures. Each entry states what the customer s
 
 | Date | Failure | Status |
 | --- | --- | --- |
-| 2026-11-07 | Customer replies cut off at the first inch mark | Fix implemented, eval run pending |
+| 2026-11-07 | Customer replies cut off at the first inch mark | Fix v2 implemented, eval run pending |
 
 ## 2026-11-07 - Customer replies cut off at the first inch mark
 
@@ -43,7 +43,7 @@ The 01-27 German case used a curly quote instead of a straight `"` and completed
 
 `evals/run_evals.py` checked only `SectionMatches` and `ActionMatches`. The 01-27 run scored 100.0% while two customer replies were truncated. A cut email still passed both checks.
 
-### Fix
+### Fix v1
 
 Three changes in one branch.
 
@@ -51,15 +51,32 @@ Three changes in one branch.
 2. `check_reply` in `app/ai/agent.py` rejects a reply that does not end with `Harbor & Pine support`. A truncated reply now retries instead of being sent.
 3. `evals/run_evals.py` adds `ReplyEndsWithSignOff`. Every decision reply, including an escalation acknowledgement, must end with the sign-off.
 
+### Eval run 2026-11-07T09-36-25
+
+The first fix ran on 2026-11-07. 17 of 18 cases completed. `board-size-90kg` failed with `UnexpectedModelBehavior: Exceeded maximum output retries (1)`. The report shows a 100.0% average because pydantic-evals excludes failed cases from that average. Treat the failed case as a fail.
+
+All 17 completed cases passed `ReplyEndsWithSignOff`. The German and pump replies use `10 ft 6 in`, so the truncation trigger is gone.
+
+The run also showed a second format problem. Every reply-action output is a single line with no `\n`. One targeted sample returned `<br><br>` instead of line breaks. Gmail sends plain text, so `<br>` would appear literally, and a long reply is still a wall of text.
+
+### Fix v2
+
+- `app/email_format.py` adds `format_email`. It converts `<br>` to newlines, separates the greeting and sign-off, puts numbered steps on their own lines, and collapses space runs.
+- `app/ai/decide.py` applies `format_email` to every outbound reply, including escalation acknowledgements.
+- `app/ai/agent.py` raises `output_retries` to 3.
+- `evals/run_evals.py` adds `ReplyIsPlainText`.
+
 ### Verification
 
-The eval has not run yet. The operator runs it.
+The 2026-11-07T09-36-25 run covers fix v1. It is not green because of `board-size-90kg`.
+
+The v2 eval has not run. The operator runs it.
 
 ```bash
 uv run python -m evals.run_evals
 ```
 
-A good run keeps the section and action score at 100.0% and adds a pass for `ReplyEndsWithSignOff` on every case.
+A good run keeps the section and action score at 100.0% and adds a pass for `ReplyEndsWithSignOff` and `ReplyIsPlainText` on every case.
 
 The deployed knowledge base needs the new text before the live agent reads it.
 
