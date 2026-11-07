@@ -4,7 +4,7 @@ A running log of customer-facing failures. Each entry states what the customer s
 
 | Date | Failure | Status |
 | --- | --- | --- |
-| 2026-11-07 | Customer replies cut off at the first inch mark | Fix v2 implemented, eval run pending |
+| 2026-11-07 | Customer replies cut off at the first inch mark | Fix v2.1 implemented, eval re-run pending |
 
 ## 2026-11-07 - Customer replies cut off at the first inch mark
 
@@ -66,11 +66,22 @@ The run also showed a second format problem. Every reply-action output is a sing
 - `app/ai/agent.py` raises output validation retries to 3 with `AgentRetries(output=3)`.
 - `evals/run_evals.py` adds `ReplyIsPlainText`.
 
+### Eval run 2026-11-07T10-52-21
+
+The v2 run completed all 18 cases with four of four assertions. `board-size-90kg` no longer fails, and every reply has real newlines and the sign-off.
+
+The run exposed a gap in `ReplyIsPlainText`. `pump-missing-with-order`, `where-is-my-order`, and `wants-a-person` returned escalation acknowledgements with literal `\n\n` text. The formatter had added real newlines, so the assertion passed, but Gmail would show the backslash sequences to the customer.
+
+### Fix v2.1
+
+- `format_email` converts literal `\r\n`, `\n`, `\r`, `\t`, and `\"` escapes to real characters.
+- `ReplyIsPlainText` rejects literal `\n`, `\r`, and `\t` escapes.
+
 ### Verification
 
-The 2026-11-07T09-36-25 run covers fix v1. It is not green because of `board-size-90kg`.
+The 2026-11-07T10-52-21 run completed 18 of 18 cases with all assertions. It found literal `\n\n` text in three acknowledgements.
 
-The v2 eval has not run. The operator runs it.
+Fix v2.1 has not been re-run. The operator runs it.
 
 ```bash
 uv run python -m evals.run_evals

@@ -39,7 +39,11 @@ class ReplyEndsWithSignOff(Evaluator):
 class ReplyIsPlainText(Evaluator):
     def evaluate(self, ctx: EvaluatorContext) -> bool:
         text = ctx.output.reply
-        return "\n" in text and not re.search(r"<[a-zA-Z/][^>]*>", text)
+        return (
+            "\n" in text
+            and not re.search(r"\\[nrt]", text)
+            and not re.search(r"<[a-zA-Z/][^>]*>", text)
+        )
 
 
 def run_pipeline(email: str) -> Decision:
