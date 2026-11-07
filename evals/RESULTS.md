@@ -1,7 +1,12 @@
 # Evaluation Results
 
-The golden set contains 18 customer emails with two binary checks per case: the section and the action.
-A perfect score is 36 of 36 checks, reported as 100.0% assertions.
+The golden set contains 18 customer emails.
+The first prompt-tuning runs below used two binary checks per case: the section and the action.
+A perfect score for those runs was 36 of 36 checks, reported as 100.0% assertions.
+
+The suite now checks four things per case: the section, the action, the sign-off, and plain text.
+See `evals/run_evals.py` and the README for the current checks.
+The 2026-11-07 runs are not listed here yet.
 
 ## Run history
 

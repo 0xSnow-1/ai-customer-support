@@ -1,6 +1,6 @@
 x-app: &app
   build: .
-  image: ai-customer-support
+  image: sibyl
   env_file: .env
   restart: unless-stopped
   logging:
