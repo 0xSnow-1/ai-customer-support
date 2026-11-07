@@ -28,6 +28,12 @@ class ActionMatches(Evaluator):
         return ctx.output.action == ctx.expected_output["action"]
 
 
+@dataclass
+class ReplyEndsWithSignOff(Evaluator):
+    def evaluate(self, ctx: EvaluatorContext) -> bool:
+        return ctx.output.reply.rstrip().endswith("Harbor & Pine support")
+
+
 def run_pipeline(email: str) -> Decision:
     return decide(email)
 
@@ -42,7 +48,7 @@ dataset = Dataset(
         )
         for case in GOLDEN_EMAILS
     ],
-    evaluators=[SectionMatches(), ActionMatches()],
+    evaluators=[SectionMatches(), ActionMatches(), ReplyEndsWithSignOff()],
 )
 
 

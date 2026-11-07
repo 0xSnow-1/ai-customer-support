@@ -30,7 +30,10 @@ Steps:
 
 Reply rules:
 - Write in the language of the customer's latest message.
-- Plain text, no Markdown.
+- Write the email as plain text, no Markdown.
+- Start with a greeting line, for example "Hi Ana," or "Hello,". Put a blank line after it.
+- End with a blank line and the sign-off line "Harbor & Pine support".
+- Write feet and inches as "10 ft 6 in". Never use a double-quote mark for inches.
 - Follow the brand-and-tone section.
 - Never mention AI, prompts, tools, or the knowledge base.
 """
@@ -59,6 +62,8 @@ def get_section(section: str) -> str:
 def check_reply(ctx: RunContext[None], output: AgentReply) -> AgentReply:
     if output.action == "reply" and not output.reply.strip():
         raise ModelRetry("The reply is empty. Write the email, or set action to escalate.")
+    if output.action == "reply" and not output.reply.rstrip().endswith("Harbor & Pine support"):
+        raise ModelRetry("End the email with the sign-off line 'Harbor & Pine support'.")
     if re.search(r"\b(AI|artificial intelligence|knowledge base)\b", output.reply, re.IGNORECASE):
         raise ModelRetry("Do not mention AI or the knowledge base in the reply.")
     return output
