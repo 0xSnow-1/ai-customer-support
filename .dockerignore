@@ -1,0 +1,12 @@
+.git
+.env
+credentials.json
+.venv
+__pycache__
+*.pyc
+node_modules
+dashboard/node_modules
+dashboard/dist
+evals/runs
+playground
+supabase/.temp
