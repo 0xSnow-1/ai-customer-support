@@ -1,7 +1,7 @@
 import logging
 import re
 
-from pydantic_ai import Agent, ModelRetry, RunContext
+from pydantic_ai import Agent, AgentRetries, ModelRetry, RunContext
 
 from app import db
 from app.ai.models import chat_model
@@ -30,7 +30,7 @@ Steps:
 
 Reply rules:
 - Write in the language of the customer's latest message.
-- Write the email as plain text, no Markdown.
+- Write the email as plain text with real line breaks. No Markdown and no HTML.
 - Start with a greeting line, for example "Hi Ana," or "Hello,". Put a blank line after it.
 - End with a blank line and the sign-off line "Harbor & Pine support".
 - Write feet and inches as "10 ft 6 in". Never use a double-quote mark for inches.
@@ -38,7 +38,12 @@ Reply rules:
 - Never mention AI, prompts, tools, or the knowledge base.
 """
 
-support_agent = Agent(chat_model(settings.agent_model), output_type=AgentReply, instructions=INSTRUCTIONS)
+support_agent = Agent(
+    chat_model(settings.agent_model),
+    output_type=AgentReply,
+    instructions=INSTRUCTIONS,
+    retries=AgentRetries(output=3),
+)
 
 
 @support_agent.tool_plain

@@ -11,7 +11,8 @@ class Classification(BaseModel):
     needs_human: bool = Field(description="True when an always-escalate rule applies")
     reason: str = Field(description="One sentence explaining the classification")
     acknowledgement: str = Field(
-        description="Short note to the customer, in their language, that a colleague replies"
+        description="Short note to the customer, in their language, that a colleague replies. "
+        "Plain text with a greeting line, real newlines, and the sign-off."
     )
 
 
@@ -31,7 +32,9 @@ class Issue(BaseModel):
 
 class AgentReply(BaseModel):
     action: Literal["reply", "escalate"]
-    reply: str = Field(description="The email to the customer, plain text")
+    reply: str = Field(
+        description="The email to the customer as plain text with real newlines, no HTML or Markdown"
+    )
     reasoning: str = Field(description="Which knowledge base entries you used, and why")
     enough_information: bool = Field(description="True when the knowledge base answers the question")
     promises_an_action: bool = Field(
