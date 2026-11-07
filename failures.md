@@ -64,7 +64,7 @@ A good run keeps the section and action score at 100.0% and adds a pass for `Rep
 The deployed knowledge base needs the new text before the live agent reads it.
 
 ```bash
-uv run python scripts/seed_knowledge_base.py
+uv run python -m scripts.seed_knowledge_base
 ```
 
 ### Follow-up
