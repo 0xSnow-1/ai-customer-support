@@ -63,7 +63,7 @@ The run also showed a second format problem. Every reply-action output is a sing
 
 - `app/email_format.py` adds `format_email`. It converts `<br>` to newlines, separates the greeting and sign-off, puts numbered steps on their own lines, and collapses space runs.
 - `app/ai/decide.py` applies `format_email` to every outbound reply, including escalation acknowledgements.
-- `app/ai/agent.py` raises `output_retries` to 3.
+- `app/ai/agent.py` raises output validation retries to 3 with `AgentRetries(output=3)`.
 - `evals/run_evals.py` adds `ReplyIsPlainText`.
 
 ### Verification

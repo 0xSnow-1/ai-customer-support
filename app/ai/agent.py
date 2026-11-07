@@ -1,7 +1,7 @@
 import logging
 import re
 
-from pydantic_ai import Agent, ModelRetry, RunContext
+from pydantic_ai import Agent, AgentRetries, ModelRetry, RunContext
 
 from app import db
 from app.ai.models import chat_model
@@ -42,7 +42,7 @@ support_agent = Agent(
     chat_model(settings.agent_model),
     output_type=AgentReply,
     instructions=INSTRUCTIONS,
-    output_retries=3,
+    retries=AgentRetries(output=3),
 )
 
 
